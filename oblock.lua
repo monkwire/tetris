@@ -8,7 +8,7 @@ function IBlock.new(self, type)
 end
 
 function IBlock.draw(self)
-    love.graphics.rectangle("line", self.x, self.y, 10, 40)
+    love.graphics.rectangle("line", self.x, self.y, 20, 20)
 end
 
 return IBlock

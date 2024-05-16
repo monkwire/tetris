@@ -8,8 +8,12 @@ function love.update(dt)
 end
 
 function love.keypressed(key)
-    if key == "space" then
+    if key == "i" then
         bm.AddIBlock(bm)
+    elseif key == "j" then
+        bm.AddJBlock(bm)
+    elseif key == "o" then
+        bm.AddOBlock(bm)
     elseif key == "right" then
         if #bm.blocks then
             bm.blocks[#bm.blocks].move_right(bm.blocks[#bm.blocks])

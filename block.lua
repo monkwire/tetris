@@ -2,8 +2,6 @@ local Object = require("classic")
 local Block = Object:extend()
 
 function Block.new(self)
-    print("block init")
-
     self.x = 100
     self.y = 100
     self.speed = 100
@@ -15,16 +13,12 @@ function Block.update(self, dt)
     self.y = self.y + self.speed * dt
 end
 
-local IBlock = Block:extend()
-
-function IBlock.new(self, type)
-    print("iblock init")
-    IBlock.super.new(self, type)
+function Block.move_right(self)
+    self.x = self.x + 10
 end
 
-function IBlock.draw(self)
-    -- love.graphics.rectangle("line", self.x, self.y, 10, 40)
-    love.graphics.rectangle("line", 100, 100, 10, 40)
+function Block.move_left(self)
+    self.x = self.x - 10
 end
 
 return Block

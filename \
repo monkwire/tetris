@@ -1,0 +1,12 @@
+function love.load()
+    BlockManager = require("block_manager")
+    bm = BlockManager:new()
+end
+
+function love.update(dt)
+    bm:update(dt)
+end
+
+function love.draw()
+    bm:draw()
+end

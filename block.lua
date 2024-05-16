@@ -1,5 +1,16 @@
 local Object = require("classic")
 local Block = Object:extend()
+local color = require("color")
+local MiniBlock = Object:extend()
+
+function MiniBlock.new(self, x, y, color)
+    self.x  = x
+    self.y = y
+    self.color = color
+end
+
+function MiniBlock.draw(self)
+
 
 function Block.new(self)
     self.x = 100
@@ -12,6 +23,7 @@ end
 function Block.update(self, dt)
     self.y = self.y + self.speed * dt
 end
+
 
 function Block.move_right(self)
     self.x = self.x + 10

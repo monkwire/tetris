@@ -3,9 +3,23 @@ function love.load()
     GAME = Game()
 end
 
-function love.update(dt) end
+function love.update(dt)
+    -- GAME.tetromino = GAME.tetronimo
+end
 
-function love.keypressed(key) end
+function love.keypressed(key)
+    if key == "s" then
+        GAME:SpawnTetromino()
+    elseif key == "space" then
+        GAME.tetromino:rotate()
+    elseif key == "right" then
+        GAME.tetromino:move(1, 0)
+    elseif key == "left" then
+        GAME.tetromino:move(-1, 0)
+    elseif key == "down" then
+        GAME.tetromino:move(0, 1)
+    end
+end
 
 function love.draw()
     local function draw_block(block)

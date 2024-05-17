@@ -15,23 +15,47 @@ function M.Block:new(x, y, color)
 end
 
 function M.Tetromino:new(type)
-    self.center_x = 5
-    self.center_y = 0
+    print("new tetromino of type", type)
+    self.x = 5
+    self.y = 5
     self.speed = 100
     self.blocks = {}
 
+    local color
+    local deltas
+
     if type == "I" then
-        local blue = Color.new(1, 0.78, 0.15, 0.5)
-        for i = 1, 4 do
-            local block = M.Block(self.center_x + i, self.center_y, blue)
-            table.insert(self.blocks, block)
-        end
+        color = Color.new(1, 0.78, 0.15, 0.5)
+        deltas = { { -1, 0 }, { 0, 0 }, { 1, 0 }, { 2, 0 } }
+    elseif type == "O" then
+        color = Color.new(1, 0.2, 0.9, 0.3)
+        deltas = { { -1, 0 }, { 0, 0 }, { -1, 1 }, { 0, 1 } }
+    end
+
+    for _, delta in ipairs(deltas) do
+        table.insert(self.blocks, M.Block(self.x + delta[1], self.y + delta[2], color))
     end
 
     return self
 end
 
-function M.Tetromino:move(dx, dy) end
+function M.Tetromino:move(dx, dy)
+    for _, block in ipairs(self.blocks) do
+        block.x = block.x + dx
+        block.y = block.y + dy
+    end
+end
+
+function M.Tetromino:rotate()
+    print("tetronimo rotate")
+    for _, block in ipairs(self.blocks) do
+        local delta_x = block.x - self.x
+        local delta_y = block.y - self.y
+
+        block.x = (self.y + delta_y)
+        block.y = (self.x + delta_x)
+    end
+end
 
 function M.Tetromino:collideswith(blocks) end
 

@@ -1,30 +1,23 @@
 function love.load()
-    BlockManager = require("block_manager")
-    bm = BlockManager()
+    Game = require("game")
+    GAME = Game()
 end
 
-function love.update(dt)
-    bm.update(bm, dt)
-end
+function love.update(dt) end
 
-function love.keypressed(key)
-    if key == "i" then
-        bm.AddIBlock(bm)
-    elseif key == "j" then
-        bm.AddJBlock(bm)
-    elseif key == "o" then
-        bm.AddOBlock(bm)
-    elseif key == "right" then
-        if #bm.blocks then
-            bm.blocks[#bm.blocks].move_right(bm.blocks[#bm.blocks])
-        end
-    elseif key == "left" then
-        if #bm.blocks then
-            bm.blocks[#bm.blocks].move_left(bm.blocks[#bm.blocks])
-        end
-    end
-end
+function love.keypressed(key) end
 
 function love.draw()
-    bm:draw(bm)
+    local function draw_block(block)
+        love.graphics.setColor(block.color.a, block.color.r, block.color.g, block.color.b)
+        love.graphics.rectangle("fill", block.x * 10, block.y * 10, 10, 10)
+    end
+
+    for _, block in ipairs(GAME.blocks) do
+        draw_block(block)
+    end
+
+    for _, block in ipairs(GAME.tetromino.blocks) do
+        draw_block(block)
+    end
 end
